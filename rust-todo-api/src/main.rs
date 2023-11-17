@@ -1,12 +1,12 @@
 mod db;
 mod models;
 
-use crate::models::request::Request;
-use crate::models::todos::Todo;
 use actix_web::{delete, put, web};
 use actix_web::{get, post, web::Json, HttpResponse};
-use db::Database;
 
+use crate::models::request::Request;
+use crate::models::todos::Todo;
+use db::Database;
 
 #[get("/todo")]
 pub async fn get_todos() -> HttpResponse {
@@ -16,7 +16,6 @@ pub async fn get_todos() -> HttpResponse {
         Err(err) => HttpResponse::InternalServerError().json(err.to_string()),
     }
 }
-
 
 #[post("/todo/add")]
 pub async fn add_todo(new_todo: Json<Request>) -> HttpResponse {
